@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Cormorant+Garamond:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #d4a574;
+            --secondary: #f5e6d3;
+            --accent: #e8d4c4;
+            --dark: #3d2817;
+            --rose: #d8888c;
+            --gold: #f4d35e;
+            --light-rose: #f0d4d8;
+        }
+
+        body {
+            font-family: 'Cormorant Garamond', serif;
+            background: linear-gradient(135deg, #fef9f3 0%, #f5e6d3 100%);
+            color: var(--dark);
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        /* Animated background elements */
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: var(--rose);
+            pointer-events: none;
+            animation: fall linear infinite;
+        }
+
+        .confetti:nth-child(1) { left: 10%; animation-duration: 3s; animation-delay: 0s; background: var(--gold); }
+        .confetti:nth-child(2) { left: 20%; animation-duration: 3.5s; animation-delay: 0.2s; background: var(--rose); }
+        .confetti:nth-child(3) { left: 30%; animation-duration: 4s; animation-delay: 0.4s; background: var(--primary); }
+        .confetti:nth-child(4) { left: 40%; animation-duration: 3.2s; animation-delay: 0.6s; background: var(--light-rose); }
+        .confetti:nth-child(5) { left: 50%; animation-duration: 3.8s; animation-delay: 0.8s; background: var(--gold); }
+        .confetti:nth-child(6) { left: 60%; animation-duration: 3.3s; animation-delay: 1s; background: var(--rose); }
+        .confetti:nth-child(7) { left: 70%; animation-duration: 4.2s; animation-delay: 1.2s; background: var(--primary); }
+        .confetti:nth-child(8) { left: 80%; animation-duration: 3.6s; animation-delay: 1.4s; background: var(--light-rose); }
+        .confetti:nth-child(9) { left: 90%; animation-duration: 3.9s; animation-delay: 1.6s; background: var(--gold); }
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .container {
+            max-width: 900px;
+            width: 95%;
+            text-align: center;
+            z-index: 10;
+            animation: slideUp 1s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header {
+            margin-bottom: 40px;
+        }
+
+        .birthday-text {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: 900;
+            color: var(--dark);
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+            animation: fadeInScale 1.2s ease-out 0.3s both;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .sister-name {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 6vw, 4rem);
+            font-weight: 700;
+            color: var(--rose);
+            margin-bottom: 30px;
+            animation: fadeInScale 1.2s ease-out 0.6s both;
+        }
+
+        .decorative-line {
+            width: 100px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+            margin: 20px auto 30px;
+            animation: expandWidth 1s ease-out 0.9s both;
+        }
+
+        @keyframes expandWidth {
+            from {
+                width: 0;
+                opacity: 0;
+            }
+            to {
+                width: 100px;
+                opacity: 1;
+            }
+        }
+
+        .message-box {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 20px;
+            border: 2px solid var(--primary);
+            box-shadow: 0 8px 32px rgba(212, 165, 116, 0.15);
+            margin-bottom: 40px;
+            animation: fadeInScale 1.2s ease-out 1.2s both;
+        }
+
+        .message-box p {
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            line-height: 1.8;
+            color: var(--dark);
+            font-weight: 300;
+            margin-bottom: 15px;
+        }
+
+        .message-box p:last-child {
+            margin-bottom: 0;
+            font-style: italic;
+            color: var(--rose);
+            font-weight: 500;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 16px 40px;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem;
+            font-weight: 500;
+            background: linear-gradient(135deg, var(--rose) 0%, var(--primary) 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(216, 136, 140, 0.3);
+            animation: fadeInScale 1.2s ease-out 1.5s both;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(216, 136, 140, 0.4);
+        }
+
+        .cta-button:active {
+            transform: translateY(-1px);
+        }
+
+        .balloons {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 200px;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .balloon {
+            position: absolute;
+            width: 40px;
+            height: 50px;
+            border-radius: 50% 50% 50% 0;
+            bottom: 0;
+            animation: float 6s infinite ease-in-out;
+        }
+
+        .balloon1 { left: 5%; background: var(--rose); animation-delay: 0s; }
+        .balloon2 { left: 15%; background: var(--gold); animation-delay: 1s; }
+        .balloon3 { left: 25%; background: var(--primary); animation-delay: 2s; }
+        .balloon4 { left: 35%; background: var(--light-rose); animation-delay: 0.5s; }
+        .balloon5 { left: 45%; background: var(--rose); animation-delay: 1.5s; }
+        .balloon6 { left: 55%; background: var(--gold); animation-delay: 2.5s; }
+        .balloon7 { left: 65%; background: var(--primary); animation-delay: 0.7s; }
+        .balloon8 { left: 75%; background: var(--light-rose); animation-delay: 1.7s; }
+        .balloon9 { left: 85%; background: var(--rose); animation-delay: 2.2s; }
+        .balloon10 { left: 95%; background: var(--gold); animation-delay: 1.2s; }
+
+        @keyframes float {
+            0% {
+                bottom: 0;
+                opacity: 1;
+            }
+            100% {
+                bottom: 200px;
+                opacity: 0;
+            }
+        }
+
+        .balloon::after {
+            content: '';
+            position: absolute;
+            bottom: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 1px;
+            height: 50px;
+            background: rgba(61, 40, 23, 0.3);
+        }
+
+        .hearts {
+            font-size: 2rem;
+            margin-top: 30px;
+            animation: heartBeat 1.5s infinite 1.8s;
+        }
+
+        @keyframes heartBeat {
+            0%, 100% {
+                transform: scale(1);
+            }
+            25% {
+                transform: scale(1.2);
+            }
+            50% {
+                transform: scale(1);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .message-box {
+                padding: 25px;
+            }
+
+            .cta-button {
+                padding: 12px 30px;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Confetti animation -->
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+
+    <!-- Main content -->
+    <div class="container">
+        <div class="header">
+            <div class="birthday-text">🎉 Happy Birthday! 🎉</div>
+            <div class="sister-name" id="sisterName">My Dear Sister</div>
+            <div class="decorative-line"></div>
+        </div>
+
+        <div class="message-box">
+            <p>💕 My honeybun... Thanks for always being there for me. Thanks for making me whoever I am now. It would have been a lot difficult to live this life without you.</p>
+            <p>🌟 Asa thanks may har ek sec bhi bolu na still wo kam pad jayega tere liye. Thanks for being my friend, companion, partner in crime, shoulder to cry on, my happiness, my light at the end of the tunnel and most importantly my cutest and sweetest sister..! ✨</p>
+            <p>💫 Agar bhagwan ne mujhe mauka diya ye zindagi phir se shuru se jeene ka... to main bas ek hi cheez badlunga... Tu jis din is duniya mein aaye na usi din se tere saath rahunga.. Taki tere har ek birthday tere saath reh saku, tere life ka har ek chhoti si chhoti achievement ki khushi manasaku na.. 🎊</p>
+            <p>🎉 Aaj tere bday hai na, ye baat to bhool hi gaye yaar main to.<br>Happy bday my cutuwa 💕 I always love you and I'll keep missing you every moment you are not with me. ✨</p>
+        </div>
+
+        <button class="cta-button" onclick="makeAWish()">Make a Wish Together</button>
+
+        <div class="hearts">💕 ✨ 💕</div>
+    </div>
+
+    <!-- Balloons -->
+    <div class="balloons">
+        <div class="balloon balloon1"></div>
+        <div class="balloon balloon2"></div>
+        <div class="balloon balloon3"></div>
+        <div class="balloon balloon4"></div>
+        <div class="balloon balloon5"></div>
+        <div class="balloon balloon6"></div>
+        <div class="balloon balloon7"></div>
+        <div class="balloon balloon8"></div>
+        <div class="balloon balloon9"></div>
+        <div class="balloon balloon10"></div>
+    </div>
+
+    <script>
+        // Customize the sister's name (edit this)
+        document.getElementById('sisterName').textContent = 'Your Sister\'s Name';
+
+        // Fun button interaction
+        function makeAWish() {
+            const wish = prompt('What would you like? 💕', '');
+            
+            if (wish === null || wish.trim() === '') return; // User cancelled or left empty
+            
+            // Save wish to database
+            saveWish(wish);
+            
+            // Show confirmation
+            alert('✨ Got it! This wish will be fulfilled! 💕');
+            
+            // Trigger confetti burst
+            triggerConfetti();
+        }
+
+        function saveWish(wish) {
+            const wishData = {
+                wish: wish,
+                timestamp: new Date().toISOString()
+            };
+            
+            // Send to server
+            fetch('/api/save-wish', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(wishData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Wish saved!', data);
+            })
+            .catch(error => console.error('Error saving wish:', error));
+        }
+
+        function triggerConfetti() {
+            for (let i = 0; i < 30; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + '%';
+                confetti.style.background = ['#d8888c', '#f4d35e', '#d4a574', '#f0d4d8'][Math.floor(Math.random() * 4)];
+                document.body.appendChild(confetti);
+                
+                setTimeout(() => confetti.remove(), 3000);
+            }
+        }
+    </script>
+</body>
+</html>
